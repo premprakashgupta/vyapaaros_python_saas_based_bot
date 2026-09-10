@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe Interiors & Living | Premium Home Decor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --accent: #f59e0b;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn-consult {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-consult:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ede9fe;
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #ffffff, #f1f5f9);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .features-list li {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14.5px;
+      color: #334155;
+    }
+
+    .features-list li::before {
+      content: "✓";
+      color: #22c55e;
+      font-weight: 800;
+    }
+
+    /* Products & Packages Section */
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      margin-top: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(79, 70, 229, 0.1);
+    }
+
+    .product-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .product-price {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .product-price span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    /* Live Testing Instructions Banner */
+    .test-banner {
+      background: #f8fafc;
+      border: 2px dashed #6366f1;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .test-banner h4 {
+      color: var(--primary);
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .test-banner p {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .code-pill {
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12.5px;
+      color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+      }
+      .hero h1 {
+        font-size: 38px;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">
+      <i data-lucide="sparkles" style="width:22px;height:22px;display:inline-block;vertical-align:-4px;margin-right:6px;color:var(--primary);"></i> Luxe Interiors
+    </a>
+    <nav>
+      <a href="#packages">Design Packages</a>
+      <a href="#furniture">Living Collection</a>
+      <a href="#about">Warranty & FAQ</a>
+    </nav>
+    <a href="javascript:void(0)" onclick="window.__openVyapaarChat && window.__openVyapaarChat()" class="btn-consult">Chat with Aria (AI)</a>
+  </header>
+
+  <!-- Live Testing Notice -->
+  <div class="test-banner">
+    <h4><i data-lucide="bot" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> VyapaarOS 1-Line Embed Widget Active</h4>
+    <p>
+      This demo site simulates a client storefront with our embed script injected at the bottom: 
+      <br/><span class="code-pill">&lt;script src="http://127.0.0.1:8000/static/widget.js" data-api-key="vyapaar_live_eaeea2b596a9fa0f38b8f60b07fb144a" defer&gt;&lt;/script&gt;</span>
+      <br/><strong>Try asking:</strong> <em>"What is the price for 2BHK interior?"</em>, <em>"Do you provide warranty on sofa?"</em> or share your phone number <em>"My number is 9876543210"</em>.
+    </p>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div>
+      <span class="hero-badge">Modern Luxury Living</span>
+      <h1>Crafting Spaces That <span>Inspire Your Everyday</span></h1>
+      <p>From turnkey 2BHK & 3BHK home interiors to bespoke Italian velvet furniture, we bring your dream home to life with precision and 10-year warranty.</p>
+      <div class="hero-actions">
+        <a href="#packages" class="btn-consult">Explore Packages</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3><i data-lucide="home" style="width:20px;height:20px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> 2026 Home Makeover Special</h3>
+      <p style="font-size: 14px; color: #64748b;">Get free 3D virtual walkthrough + modular kitchen design when you book consultation this week.</p>
+      <ul class="features-list">
+        <li>100% Teak Wood & Commercial BWP Plywood</li>
+        <li>10-Year Replacement Warranty</li>
+        <li>On-Time 45-Day Delivery Guarantee</li>
+        <li>Dedicated Senior Interior Architect</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section class="section" id="packages">
+    <div class="section-title">
+      <h2>Popular Interior Packages & Furniture</h2>
+      <p>Transparent pricing with zero hidden costs. Customize every inch of your space.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="product-card">
+        <div class="product-tag">Turnkey Interior</div>
+        <h3>2BHK Complete Makeover</h3>
+        <p>Includes Modular Kitchen with soft-close hinges, Master Bedroom Wardrobe, TV Unit & False Ceiling.</p>
+        <div class="product-price">₹3,50,000 <span>/ onwards</span></div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Luxury Living</div>
+        <h3>3BHK Premium Living</h3>
+        <p>Complete 3 Bedroom Modular Solution with Vanity units, Italian foyer panelling, and automated ambient lighting.</p>
+        <div class="product-price">₹5,20,000 <span>/ onwards</span></div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Handcrafted Furniture</div>
+        <h3>Velvet 3-Seater Royal Sofa</h3>
+        <p>High-density premium foam with stain-resistant fabric, teak wood base, and 12 curated shade options.</p>
+        <div class="product-price">₹34,999 <span>/ unit</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 🚀 VYAPAAROS 1-LINE EMBED SCRIPT                         -->
+  <!-- ======================================================== -->
+  <script 
+    src="http://127.0.0.1:8000/static/widget.js" 
+    data-api-key="vyapaar_live_eaeea2b596a9fa0f38b8f60b07fb144a" 
+    defer>
+  </script>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

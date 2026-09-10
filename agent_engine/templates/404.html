@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | VyapaarOS AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F2541B;
+      --primary-hover: #d44310;
+      --bg: #FCFDFE;
+      --card-bg: #FFFFFF;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --border: rgba(226, 232, 240, 0.9);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
+    body {
+      background: var(--bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .error-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 50px 40px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+    .error-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(242, 84, 27, 0.08);
+      border: 1px solid rgba(242, 84, 27, 0.2);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+    .error-code {
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--primary);
+      letter-spacing: -3px;
+      margin-bottom: 12px;
+    }
+    .error-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .error-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .route-chip {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .route-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 14px rgba(242, 84, 27, 0.25);
+      transition: all 0.2s;
+    }
+    .btn-home:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="error-card">
+    <div class="error-badge"><i data-lucide="alert-triangle" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> 404 Error</div>
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">
+      Oops! The page or store link you are looking for doesn't exist or has moved. Explore our live storefront demos below:
+    </p>
+
+    <div class="links-grid">
+      <a href="/clothing/" class="route-chip"><i data-lucide="shopping-bag" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> Clothing Demo</a>
+      <a href="/cyber/" class="route-chip"><i data-lucide="monitor" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> Cyber Cafe Demo</a>
+      <a href="/demo/" class="route-chip"><i data-lucide="home" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> Luxe Living Demo</a>
+      <a href="/login/" class="route-chip"><i data-lucide="lock" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> Client Login</a>
+    </div>
+
+    <a href="/" class="btn-home">➔ Return to Homepage</a>
+  </div>
+
+  <!-- Auto-attach Widget on 404 Page -->
+  <script 
+    src="/static/widget.js" 
+    data-api-key="vyapaar_live_de248b0c874b8ed15e430ca090a68176" 
+    async>
+  </script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

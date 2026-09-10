@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Point Cyber Cafe & CSC Center | Online Form, Passport, Ticket & Print</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ea580c;
+      --primary-dark: #c2410c;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14.5px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn-wa {
+      background: #22c55e;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13.5px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 36px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ffedd5;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 26px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-card h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .services-list {
+      list-style: none;
+    }
+
+    .services-list li {
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #334155;
+      border-bottom: 1px dashed #f1f5f9;
+    }
+
+    .services-list li::before {
+      content: "✦";
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Services Grid */
+    .section {
+      padding: 60px 36px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .service-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    .service-box h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-box p {
+      font-size: 13.5px;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .rate-badge {
+      display: inline-block;
+      background: #fff7ed;
+      color: #c2410c;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    /* Info Banner */
+    .test-banner {
+      background: #fff7ed;
+      border: 2px dashed #ea580c;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 1200px;
+    }
+
+    .test-banner h4 {
+      color: var(--primary);
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .test-banner p {
+      font-size: 13.5px;
+      color: #431407;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+      }
+      .hero h1 { font-size: 32px; }
+      nav { display: none; }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">
+      <i data-lucide="monitor" style="width:22px;height:22px;display:inline-block;vertical-align:-4px;margin-right:6px;color:var(--primary);"></i> Digital Point Cyber Cafe
+    </a>
+    <nav>
+      <a href="#services">Online Forms</a>
+      <a href="#passport">Passport & CSC</a>
+      <a href="#print">Print & Xerox</a>
+      <a href="#ticket">Railway Tickets</a>
+    </nav>
+    <a href="https://wa.me/919812345678" target="_blank" class="btn-wa">WhatsApp Send Docs</a>
+  </header>
+
+  <!-- Live Testing Notice -->
+  <div class="test-banner">
+    <h4><i data-lucide="bot" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> Digital Point Cyber Assistant (Rohan) Active</h4>
+    <p>
+      Cyber Cafe ke liye 1-Line Embed Script Active hai (Orange Theme). 
+      <br/><strong>Try asking bot:</strong> <em>"Railway form bharne ka kitna charge hai?"</em>, <em>"Passport banwane ke liye kya documents chahiye?"</em> ya <em>"Color print ka rate kya hai?"</em>.
+    </p>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <span class="hero-badge">Government Authorized CSC & Cyber Center</span>
+      <h1>Sabhi Online Forms, <span>Passport & Railway Tickets</span> Ek Hi Jagah</h1>
+      <p>Railway NTPC, SSC, UP Police forms, New Passport apply, Urgent Tatkal Ticket booking, aur High-Quality Color Xerox print.</p>
+    </div>
+    <div class="hero-card">
+      <h3><i data-lucide="zap" style="width:20px;height:20px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> Quick Cyber Services</h3>
+      <ul class="services-list">
+        <li>Railway & SSC Online Job Form Apply</li>
+        <li>Fresh / Tatkaal Passport Online Appointment</li>
+        <li>Aadhaar Mobile Link & PAN Card (Instant)</li>
+        <li>Urgent IRCTC Train Ticket Booking</li>
+        <li>Color Print, Passport Photos & Lamination</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" id="services">
+    <div class="section-title">
+      <h2>Popular Cyber & Citizen Services</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="service-box">
+        <h3><i data-lucide="file-text" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;color:var(--primary);"></i> Govt Job Forms</h3>
+        <p>Railway RRB NTPC, SSC CGL/CHSL, Police Bharti, UPSC and State Exams error-free online submission.</p>
+        <div class="rate-badge">Charges: ₹70 - ₹100 / form</div>
+      </div>
+
+      <div class="service-box">
+        <h3><i data-lucide="id-card" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;color:var(--primary);"></i> Passport Apply</h3>
+        <p>Fresh & Tatkaal Passport online application, Police Station appointment slot booking included.</p>
+        <div class="rate-badge">Service Fee: ₹300 + Govt Fees</div>
+      </div>
+
+      <div class="service-box">
+        <h3><i data-lucide="printer" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;color:var(--primary);"></i> Xerox & Color Print</h3>
+        <p>High quality Black & White xerox, Color glossy prints, and 8 passport size photos in 5 mins.</p>
+        <div class="rate-badge">B&W: ₹2 | Color: ₹10 / page</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 🚀 CYBER CAFE 1-LINE EMBED SCRIPT                        -->
+  <!-- ======================================================== -->
+  <script 
+    src="http://127.0.0.1:8000/static/widget.js" 
+    data-api-key="vyapaar_live_372142c160946b39b0b5042ccc9e12f5" 
+    defer>
+  </script>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

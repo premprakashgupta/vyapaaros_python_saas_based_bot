@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vastra Heritage | Luxury Bridal Lehengas, Silk Sarees & Sherwanis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #db2777;
+      --primary-dark: #be185d;
+      --gold: #d97706;
+      --dark: #0f172a;
+      --light: #fff1f2;
+      --gray: #64748b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #fffafb; color: var(--dark); overflow-x: hidden; }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid #fce7f3;
+      padding: 16px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    nav { display: flex; gap: 28px; }
+    nav a { text-decoration: none; color: #475569; font-weight: 600; font-size: 14.5px; transition: color 0.2s; }
+    nav a:hover { color: var(--primary); }
+
+    .btn-stylist {
+      background: linear-gradient(135deg, #db2777, #e11d48);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 13.5px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(219, 39, 119, 0.35);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #fce7f3;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span { color: var(--primary); font-style: italic; }
+    .hero p { font-size: 17px; color: var(--gray); line-height: 1.6; margin-bottom: 24px; }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid #fce7f3;
+      box-shadow: 0 15px 35px rgba(219, 39, 119, 0.06);
+    }
+
+    .hero-card h3 { font-size: 20px; margin-bottom: 14px; color: var(--primary); font-family: 'Playfair Display', serif; }
+    .features-list { list-style: none; }
+    .features-list li { padding: 9px 0; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #334155; border-bottom: 1px dashed #fce7f3; }
+    .features-list li::before { content: "✦"; color: var(--primary); font-weight: bold; }
+
+    /* Collections */
+    .section { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 40px; }
+    .section-title h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .cloth-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #fce7f3;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s;
+    }
+    .cloth-card:hover { transform: translateY(-4px); }
+    .cloth-tag { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 6px; }
+    .cloth-card h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
+    .cloth-card p { font-size: 13.5px; color: var(--gray); line-height: 1.5; margin-bottom: 16px; }
+    .cloth-price { font-size: 22px; font-weight: 800; color: var(--dark); }
+
+    .test-banner {
+      background: #fff1f2;
+      border: 2px dashed #db2777;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 1200px;
+    }
+    .test-banner h4 { color: var(--primary); font-size: 15px; margin-bottom: 6px; }
+    .test-banner p { font-size: 13.5px; color: #881337; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 30px 20px; }
+      .hero h1 { font-size: 36px; }
+      nav { display: none; }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo"><i data-lucide="sparkles" style="width:20px;height:20px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> Vastra Heritage</a>
+    <nav>
+      <a href="#sarees">Silk Sarees</a>
+      <a href="#lehengas">Bridal Lehengas</a>
+      <a href="#kurtis">Designer Kurtis</a>
+      <a href="#sherwani">Men's Sherwani</a>
+    </nav>
+    <a href="https://wa.me/919899887766" target="_blank" class="btn-stylist">Chat with Meera (Stylist)</a>
+  </header>
+
+  <div class="test-banner">
+    <h4><i data-lucide="bot" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> 300+ Cloth Products AI Fashion Stylist Active</h4>
+    <p>
+      Client: <strong>Vastra Heritage & Modern Couture</strong> | Bot: <strong>Meera (Fashion Stylist)</strong> (Rose Pink Theme).
+      <br/><strong>Try asking:</strong> <em>"Pastel Pink Georgette Sangeet Lehenga ka price aur size kya hai?"</em>, <em>"Pure Georgette Chikankari Saree me kaunse colors hain?"</em> ya <em>"Royal Cream Zari Sherwani ke sath kya offer hai?"</em>.
+    </p>
+  </div>
+
+  <section class="hero">
+    <div>
+      <span class="hero-badge">300+ Designer Outfits Ready to Ship</span>
+      <h1>Handcrafted Elegance For Your <span>Most Cherished Moments</span></h1>
+      <p>Explore our royal collection of Banarasi Silk Sarees, Velvet Zardozi Bridal Lehengas, Lucknowi Kurta Sets, and Italian Wool Tuxedos with bespoke tailoring.</p>
+    </div>
+    <div class="hero-card">
+      <h3><i data-lucide="sparkles" style="width:20px;height:20px;display:inline-block;vertical-align:-3px;margin-right:4px;color:var(--primary);"></i> Festive & Wedding Couture 2026</h3>
+      <ul class="features-list">
+        <li>100% Pure Mulberry Silk & Velvet Fabrics</li>
+        <li>Custom Tailoring & Blouse Stitching Available</li>
+        <li>Free Express Shipping Across India (3-5 Days)</li>
+        <li>Live Virtual Video Call Trial with Stylist</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="collections">
+    <div class="section-title">
+      <h2>Curated Fashion Showcase</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="cloth-card">
+        <div class="cloth-tag">Bridal Couture</div>
+        <h3>Bridal Velvet Heavy Zardozi Lehenga</h3>
+        <p>Royal velvet with intricate gold zardozi hand embroidery. Includes dual dupatta and custom latkans.</p>
+        <div class="cloth-price">₹28,500 <span style="font-size: 13px; color: var(--primary);">(15% Festive Off)</span></div>
+      </div>
+
+      <div class="cloth-card">
+        <div class="cloth-tag">Handloom Silk</div>
+        <h3>Kanjivaram Bridal Gold Zari Saree</h3>
+        <p>Pure mulberry silk woven with authentic gold zari temple borders. Comes with unstitched blouse piece.</p>
+        <div class="cloth-price">₹14,999</div>
+      </div>
+
+      <div class="cloth-card">
+        <div class="cloth-tag">Groom Collection</div>
+        <h3>Royal Cream Zari Embroidered Sherwani</h3>
+        <p>Jacquard silk with hand-beaded royal mandarin collar. Includes matching safa, pocket square & stole.</p>
+        <div class="cloth-price">₹18,999</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 🚀 VASTRA CLOTHING 1-LINE EMBED SCRIPT                   -->
+  <!-- ======================================================== -->
+  <script 
+    src="http://127.0.0.1:8000/static/widget.js" 
+    data-api-key="vyapaar_live_de248b0c874b8ed15e430ca090a68176" 
+    defer>
+  </script>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

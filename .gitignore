@@ -1,0 +1,45 @@
+# =============================================================
+#  VyapaarOS AI Bot — .gitignore
+# =============================================================
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment Secrets
+.env
+.env.*
+!.env.example
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Django Database & Vector Stores
+db.sqlite3
+db.sqlite3-journal
+chroma_db_store/
+
+# Static & Media Assets in Production
+staticfiles/
+media/
+
+# Sample Data & Scratch Documents
+sample_docs/
+docs/
+*.csv
+*.xlsx
+*.pdf
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log

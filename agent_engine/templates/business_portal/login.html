@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal Login | VyapaarOS AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F2541B;
+      --primary-hover: #d44310;
+      --bg: #FCFDFE;
+      --card-bg: #FFFFFF;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --border: rgba(226, 232, 240, 0.9);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
+    body {
+      background: var(--bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      text-decoration: none;
+    }
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(242, 84, 27, 0.25);
+    }
+    .brand-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text-dark);
+    }
+    h2 { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
+    p.sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; font-weight: 500; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #475569; margin-bottom: 6px; }
+    .form-input {
+      width: 100%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text-dark);
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .form-input:focus {
+      background: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(242, 84, 27, 0.1);
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 13px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(242, 84, 27, 0.25);
+      margin-top: 10px;
+      transition: all 0.2s;
+    }
+    .btn-submit:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .alert-error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .card-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .card-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <a href="/" class="logo-wrap">
+      <div class="logo-badge">V</div>
+      <span class="brand-title">VyapaarOS</span>
+    </a>
+
+    <h2>Client Portal Login</h2>
+    <p class="sub">Access your AI Sales Bot controls & captured leads</p>
+
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert-error">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Username / Email</label>
+        <input type="text" name="username" class="form-input" placeholder="e.g. vastra_admin" required autofocus />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-input" placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="btn-submit">Sign In to Dashboard ➔</button>
+    </form>
+
+    <div class="card-footer">
+      <span>Need help? <a href="https://wa.me/919955804730" target="_blank">Contact Developer on WhatsApp</a></span>
+    </div>
+  </div>
+
+</body>
+</html>

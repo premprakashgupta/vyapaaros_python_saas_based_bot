@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VyapaarOS AI — 24/7 AI Sales Executive & Automation for Indian Businesses</title>
+  <meta name="description" content="Turn every website visitor into a paying customer with VyapaarOS AI. 1-line script embed, smart lead capture, RAG catalog sync, and direct WhatsApp handoff.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F2541B;
+      --primary-hover: #d44310;
+      --primary-light: rgba(242, 84, 27, 0.08);
+      --primary-border: rgba(242, 84, 27, 0.2);
+      --bg: #FCFDFE;
+      --card-bg: #FFFFFF;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --border: rgba(226, 232, 240, 0.85);
+      --topbar-bg: #0A0F18;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.5;
+      selection-background-color: rgba(242, 84, 27, 0.15);
+    }
+
+    /* Top Announcement Bar */
+    .top-announcement {
+      background: var(--topbar-bg);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .top-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-left, .top-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .top-link:hover {
+      color: var(--primary);
+    }
+
+    /* Navigation Bar */
+    nav.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      padding: 18px 24px;
+    }
+
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(242, 84, 27, 0.25);
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      transition: color 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-growth {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 14px rgba(242, 84, 27, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+
+    .btn-growth:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(242, 84, 27, 0.35);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: var(--text-dark);
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: 70px 24px 80px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      right: 0;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(242, 84, 27, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--text-dark);
+      letter-spacing: -1.2px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span.highlight {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.6;
+      max-width: 560px;
+      margin-bottom: 34px;
+      font-weight: 500;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 24px;
+    }
+
+    .avatar-group {
+      display: flex;
+    }
+
+    .avatar-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-left: -8px;
+      object-fit: cover;
+      background: #e2e8f0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-img:first-child { margin-left: 0; }
+
+    .avatar-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+    /* Hero 4 Stat Cards */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #1e293b;
+    }
+
+    .stat-icon {
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-desc {
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .stat-visual {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Live Demos Section */
+    .section-wrap {
+      padding: 80px 24px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Demo Cards Grid */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .demo-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-box:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    .demo-cover {
+      height: 160px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      position: relative;
+    }
+
+    .demo-cover.clothing {
+      background: linear-gradient(135deg, #be185d 0%, #881337 100%);
+    }
+
+    .demo-cover.cyber {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    }
+
+    .demo-cover.interior {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    }
+
+    .demo-badge-top {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: fit-content;
+    }
+
+    .demo-title-wrap h3 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .demo-title-wrap p {
+      font-size: 11.5px;
+      opacity: 0.9;
+    }
+
+    .demo-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-list li {
+      font-size: 12.5px;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .feature-list li span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .demo-action-btn {
+      width: 100%;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .demo-action-btn:hover {
+      background: var(--primary);
+    }
+
+    /* 1-Line Embed Generator Section */
+    .embed-section {
+      background: #0A0F18;
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 60px 48px;
+      margin: 40px auto 80px;
+      max-width: 1240px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .embed-title {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .embed-desc {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .code-window {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .code-top {
+      background: #111827;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .code-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot-c { width: 9px; height: 9px; border-radius: 50%; }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #eab308; }
+    .dot-green { background: #22c55e; }
+
+    .code-inner {
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12.5px;
+      color: #38bdf8;
+      line-height: 1.6;
+      word-break: break-all;
+    }
+
+    .code-btn-copy {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .code-btn-copy:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Floating WhatsApp Button */
+    .wa-float-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 52px;
+      height: 52px;
+      background: #25D366;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      text-decoration: none;
+      font-size: 26px;
+      transition: transform 0.2s;
+    }
+
+    .wa-float-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #64748b;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section { grid-template-columns: 1fr; }
+      .embed-section { grid-template-columns: 1fr; padding: 36px 24px; }
+      .nav-menu { display: none; }
+      .hero-title { font-size: 34px; }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Contact Strip -->
+  <div class="top-announcement">
+    <div class="top-inner">
+      <div class="top-left">
+        <a href="https://wa.me/919955804730" target="_blank" class="top-link">
+          <span><i data-lucide="message-square" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> WhatsApp: +91 99558 04730</span>
+        </a>
+        <a href="mailto:vyapaaroserps@gmail.com" class="top-link">
+          <span><i data-lucide="mail" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> vyapaaroserps@gmail.com</span>
+        </a>
+      </div>
+      <div class="top-right">
+        <span><i data-lucide="zap" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> 24/7 Vector RAG & Automated Sales Engine</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="brand-logo">
+        <div class="logo-badge">V</div>
+        <span class="brand-title">VyapaarOS</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#demos">Live Demos</a></li>
+        <li><a href="#embed">1-Line Embed</a></li>
+        <li><a href="#capabilities">Features</a></li>
+        <li><a href="/login/">Client Portal</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/login/" class="btn-secondary">Client Login</a>
+        <a href="https://wa.me/919955804730?text=Hi%20VyapaarOS,%20I%20want%20to%20deploy%20the%20AI%20Sales%20Bot%20on%20my%20website" target="_blank" class="btn-growth">
+          Let's Talk Growth ➔
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-pill">
+        <i data-lucide="sparkles" style="width:15px;height:15px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> 24/7 AI Sales Agent & Ingestion Engine
+      </div>
+      <h1 class="hero-title">
+        24/7 AI Sales Executive.<br/>
+        <span class="highlight">Built For Real Businesses.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Convert website visitors into paying customers instantly. Embedded via a single line of code with persistent Vector RAG (ChromaDB), automated lead capture, and instant WhatsApp handoff.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#demos" class="btn-growth">See Live Demos ▶</a>
+        <a href="/login/" class="btn-secondary">Open Client Dashboard ➔</a>
+      </div>
+
+      <div class="avatar-stack">
+        <div class="avatar-group">
+          <div class="avatar-img"><i data-lucide="shopping-bag" style="width:18px;height:18px;"></i></div>
+          <div class="avatar-img"><i data-lucide="monitor" style="width:18px;height:18px;"></i></div>
+          <div class="avatar-img"><i data-lucide="home" style="width:18px;height:18px;"></i></div>
+          <div class="avatar-img"><i data-lucide="zap" style="width:18px;height:18px;"></i></div>
+        </div>
+        <span class="avatar-text">Active across Retail, CSC Cyber Cafes & High-Ticket Boutiques</span>
+      </div>
+    </div>
+
+    <!-- 4 Interactive Metric Cards (Matching vyapaaros.in) -->
+    <div class="hero-stats-grid">
+      <!-- Card 1: Catalog Items -->
+      <div class="stat-card">
+        <div>
+          <div class="stat-header">
+            <span class="stat-label">Live Catalog</span>
+            <span class="stat-icon"><i data-lucide="package" style="width:18px;height:18px;color:#F2541B;"></i></span>
+          </div>
+          <div class="stat-number">300+</div>
+          <p class="stat-desc">Products & rate card items indexed in real-time Vector DB</p>
+        </div>
+        <div class="stat-visual">
+          <svg width="100%" height="32" viewBox="0 0 120 32" fill="none">
+            <path d="M0,28 Q30,22 60,14 T120,4" stroke="#F2541B" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 2: Active Leads -->
+      <div class="stat-card">
+        <div>
+          <div class="stat-header">
+            <span class="stat-label">Leads Captured</span>
+            <span class="stat-icon"><i data-lucide="target" style="width:18px;height:18px;color:#F2541B;"></i></span>
+          </div>
+          <div class="stat-number">3,000+</div>
+          <p class="stat-desc">Customer phone numbers & inquiries saved directly to CRM</p>
+        </div>
+        <div class="stat-visual">
+          <div style="width: 32px; height: 32px; border-radius: 50%; border: 3px solid #e2e8f0; border-top-color: #F2541B; border-right-color: #F2541B; transform: rotate(45deg);"></div>
+        </div>
+      </div>
+
+      <!-- Card 3: RAG Retrieval Speed -->
+      <div class="stat-card">
+        <div>
+          <div class="stat-header">
+            <span class="stat-label">Response Time</span>
+            <span class="stat-icon"><i data-lucide="zap" style="width:18px;height:18px;color:#F2541B;"></i></span>
+          </div>
+          <div class="stat-number">60%</div>
+          <p class="stat-desc">Faster semantic search via ONNX Vector Embeddings</p>
+        </div>
+        <div class="stat-visual" style="display: flex; gap: 4px; width: 100%;">
+          <div style="flex: 1; height: 6px; background: #F2541B; border-radius: 3px;"></div>
+          <div style="flex: 1; height: 6px; background: #F2541B; border-radius: 3px;"></div>
+          <div style="flex: 1; height: 6px; background: #F2541B; border-radius: 3px;"></div>
+          <div style="flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px;"></div>
+        </div>
+      </div>
+
+      <!-- Card 4: Precision Rating -->
+      <div class="stat-card">
+        <div>
+          <div class="stat-header">
+            <span class="stat-label">Accuracy</span>
+            <span class="stat-icon"><i data-lucide="shield-check" style="width:18px;height:18px;color:#F2541B;"></i></span>
+          </div>
+          <div class="stat-number">98%</div>
+          <p class="stat-desc">Strict catalog grounded answers with zero hallucination</p>
+        </div>
+        <div class="stat-visual">
+          <svg width="34" height="34" viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f1f5f9" stroke-width="4"/>
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#F2541B" stroke-width="4" stroke-dasharray="100, 100" stroke-dashoffset="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo Storefronts -->
+  <section class="section-wrap" id="demos">
+    <div class="section-header">
+      <span class="section-tag">Tested Across Industries</span>
+      <h2 class="section-title">Explore Production Live Demos</h2>
+      <p class="section-sub">Experience the 1-line widget embedded on real storefronts with domain-specific knowledge ingestion.</p>
+    </div>
+
+    <div class="demos-grid">
+      <!-- Demo 1: Clothing & Ethnic Couture -->
+      <div class="demo-box">
+        <div class="demo-cover clothing">
+          <div class="demo-badge-top">300-Item Catalog</div>
+          <div class="demo-title-wrap">
+            <h3>Vastra Heritage</h3>
+            <p>Ethnic Wear & Modern Couture</p>
+          </div>
+        </div>
+        <div class="demo-body">
+          <ul class="feature-list">
+            <li><span class="dot"></span> 300+ Sarees, Lehengas, Kurtis, Sherwanis</li>
+            <li><span class="dot"></span> Natural concise answers with sizes & offers</li>
+            <li><span class="dot"></span> Multi-item ambiguity clarification</li>
+          </ul>
+          <a href="/clothing/" class="demo-action-btn">Launch Clothing Storefront ➔</a>
+        </div>
+      </div>
+
+      <!-- Demo 2: Cyber Cafe & CSC Center -->
+      <div class="demo-box">
+        <div class="demo-cover cyber">
+          <div class="demo-badge-top">Govt Services & Rates</div>
+          <div class="demo-title-wrap">
+            <h3>Digital Point Cyber Cafe</h3>
+            <p>CSC Center & Rate Card Assistant</p>
+          </div>
+        </div>
+        <div class="demo-body">
+          <ul class="feature-list">
+            <li><span class="dot"></span> Passport, Railway & Job form fees</li>
+            <li><span class="dot"></span> Required documents checklist instantly</li>
+            <li><span class="dot"></span> Instant direct WhatsApp token booking</li>
+          </ul>
+          <a href="/cyber/" class="demo-action-btn">Launch Cyber Cafe Storefront ➔</a>
+        </div>
+      </div>
+
+      <!-- Demo 3: Luxury Interiors -->
+      <div class="demo-box">
+        <div class="demo-cover interior">
+          <div class="demo-badge-top">PDF Brochure RAG</div>
+          <div class="demo-title-wrap">
+            <h3>Luxe Interiors & Living</h3>
+            <p>High-Ticket Home Design</p>
+          </div>
+        </div>
+        <div class="demo-body">
+          <ul class="feature-list">
+            <li><span class="dot"></span> Modular Kitchen & Italian Marble RAG</li>
+            <li><span class="dot"></span> High-intent phone number capture</li>
+            <li><span class="dot"></span> Direct design consultation routing</li>
+          </ul>
+          <a href="/demo/" class="demo-action-btn">Launch Interior Storefront ➔</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1-Line Embed Section -->
+  <section class="embed-section" id="embed">
+    <div>
+      <div class="hero-pill" style="background: rgba(242, 84, 27, 0.2); border-color: rgba(242, 84, 27, 0.4); color: #ff7043;">
+        <i data-lucide="zap" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i> Zero Technical Setup
+      </div>
+      <h2 class="embed-title">Embed on Any Website in 30 Seconds.</h2>
+      <p class="embed-desc">
+        Just paste this single script tag before the closing &lt;/body&gt; tag. Isolated inside a Shadow DOM so it will never clash with your website's CSS.
+      </p>
+      <a href="/login/" class="btn-growth">Get Your Business API Key ➔</a>
+    </div>
+
+    <div class="code-window">
+      <div class="code-top">
+        <div class="code-dots">
+          <span class="dot-c dot-red"></span>
+          <span class="dot-c dot-yellow"></span>
+          <span class="dot-c dot-green"></span>
+        </div>
+        <button class="code-btn-copy" onclick="copyEmbedCode(this)">Copy Script</button>
+      </div>
+      <div class="code-inner" id="embedCodeSnippet">
+&lt;!-- VyapaarOS 24/7 AI Sales Executive Widget --&gt;
+&lt;script 
+  src="http://127.0.0.1:8000/static/widget.js" 
+  data-api-key="vyapaar_live_de248b0c874b8ed15e430ca090a68176" 
+  async&gt;
+&lt;/script&gt;
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Direct Button -->
+  <a href="https://wa.me/919955804730?text=Hi%20VyapaarOS,%20I%20want%20to%20deploy%20AI%20Sales%20Bot%20on%20my%20website" target="_blank" class="wa-float-btn" title="Chat on WhatsApp"><i data-lucide="message-circle" style="width:24px;height:24px;"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 <strong>VyapaarOS</strong> — High-Performance Business AI & ERP Systems by <a href="https://www.vyapaaros.in" target="_blank">Prem Prakash Gupta</a>. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function copyEmbedCode(btn) {
+      const code = document.getElementById('embedCodeSnippet').innerText.trim();
+      navigator.clipboard.writeText(code).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied! ✓';
+        setTimeout(() => { btn.innerText = orig; }, 2000);
+      });
+    }
+  </script>
+
+  <!-- Auto-attach Widget on Homepage -->
+  <script 
+    src="/static/widget.js" 
+    data-api-key="vyapaar_live_de248b0c874b8ed15e430ca090a68176" 
+    async>
+  </script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
