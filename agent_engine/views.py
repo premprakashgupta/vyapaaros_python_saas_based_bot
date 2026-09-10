@@ -86,10 +86,52 @@ class WidgetConfigView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 
+import time
+from django.core.cache import cache
+
+def check_session_rate_limit(session_id: str, max_burst: int = 6, window_seconds: int = 60, max_session_total: int = 25):
+    """
+    Protects Groq LLM API quota from spam and endless loops:
+    1. Burst Limit: Max 6 messages per 60 seconds per session.
+    2. Session Cap: Max 25 messages per session before guiding to WhatsApp.
+    """
+    now = time.time()
+    
+    # 1. Total session message counter
+    total_key = f"chat_total_{session_id}"
+    total_count = cache.get(total_key, 0) + 1
+    cache.set(total_key, total_count, timeout=86400) # 24 hours
+    
+    if total_count > max_session_total:
+        return {
+            "allowed": False,
+            "reason": "max_session_exceeded",
+            "message": "Aapke sabhi sawalon ke liye shukriya! ✨ Aage ki detailed information, custom plan ya order process ke liye humari team se direct WhatsApp par connect karein."
+        }
+        
+    # 2. Burst window tracker
+    burst_key = f"chat_burst_{session_id}"
+    timestamps = cache.get(burst_key, [])
+    # Filter timestamps within current window
+    valid_timestamps = [t for t in timestamps if now - t < window_seconds]
+    
+    if len(valid_timestamps) >= max_burst:
+        return {
+            "allowed": False,
+            "reason": "burst_limit_exceeded",
+            "message": "Aap thoda jaldi-jaldi message bhej rahe hain ⏳ Kripya 10 second intezar karke agla sawal poochiye!"
+        }
+        
+    valid_timestamps.append(now)
+    cache.set(burst_key, valid_timestamps, timeout=window_seconds + 10)
+    
+    return {"allowed": True}
+
+
 class WidgetChatView(APIView):
     """
     Handles user chat interactions, RAG knowledge retrieval, LLM response, and lead capture.
-    Enforces Domain Whitelisting, active client status, and payload validation.
+    Enforces Domain Whitelisting, active client status, session rate limiting, and payload validation.
     """
     authentication_classes = []
     permission_classes = []
@@ -117,16 +159,35 @@ class WidgetChatView(APIView):
             return Response({"error": "session_id is required."}, status=status.HTTP_400_BAD_REQUEST)
         if not message:
             return Response({"error": "Message cannot be empty."}, status=status.HTTP_400_BAD_REQUEST)
+
+        client = api_key_obj.client
+        if not client.is_active:
+            return Response({"error": "Client account is inactive."}, status=status.HTTP_403_FORBIDDEN)
+
+        # Rate Limiting & Anti-Spam Guardrail
+        rate_check = check_session_rate_limit(session_id)
+        if not rate_check["allowed"]:
+            wa_url = f"https://wa.me/{client.owner_whatsapp}?text=Hi%20{client.name},%20I%20need%20assistance%20regarding%20my%20inquiry." if client.owner_whatsapp else None
+            return Response({
+                "success": True,
+                "reply": rate_check["message"],
+                "images": [],
+                "client_name": client.name,
+                "bot_name": client.bot_name,
+                "brand_color": client.brand_color or "#F2541B",
+                "lead_captured": False,
+                "whatsapp_url": wa_url,
+                "rate_limited": True
+            }, status=status.HTTP_200_OK)
             
         result = process_chat_message(
-            client=api_key_obj.client,
+            client=client,
             session_id=session_id,
             message=message,
             history=history
         )
 
         if not result.get("success"):
-            # Bug Fix #9: Server-side errors should be 500, not 400
             return Response({"error": result.get("error")}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response(result, status=status.HTTP_200_OK)
