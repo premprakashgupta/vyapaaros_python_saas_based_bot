@@ -309,12 +309,20 @@ sudo certbot renew --dry-run
 
 ---
 
-## 12. 1-Line Client Website Embed Script
+## 12. 🤖 Complete Bot Integration Guide (Multi-Platform)
 
-To embed the AI sales chatbot on any client website, Shopify store, WordPress site, or HTML landing page, add this single script tag right before `</body>`:
+The VyapaarOS AI Bot is built with **Shadow DOM Isolation**, meaning its CSS styles and behavior will **never conflict or break** the client website's existing styling or layout.
+
+---
+
+### 🌐 Method A: Standard HTML / PHP / Static Landing Pages
+
+Add the script tag right before the closing `</body>` tag on all pages:
 
 ```html
-<!-- 🤖 VyapaarOS AI Sales Chatbot -->
+<!-- ======================================================== -->
+<!-- 🤖 VyapaarOS AI Sales Executive Widget                   -->
+<!-- ======================================================== -->
 <script 
   src="https://bot.vyapaaros.in/static/widget.js" 
   data-api-key="vyapaar_live_YOUR_API_KEY_HERE" 
@@ -322,10 +330,176 @@ To embed the AI sales chatbot on any client website, Shopify store, WordPress si
 </script>
 ```
 
-### Example Live Portal Endpoints:
-- **Landing Page / Live Demo:** `https://bot.vyapaaros.in/`
-- **Business Client Login:** `https://bot.vyapaaros.in/login/`
-- **Superadmin Dashboard:** `https://bot.vyapaaros.in/admin/`
+---
+
+### ⚛️ Method B: React.js & Next.js
+
+#### 1. Next.js (App Router / Pages Router):
+In `app/layout.js` or `pages/_app.js`:
+```jsx
+import Script from 'next/script';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Script
+          src="https://bot.vyapaaros.in/static/widget.js"
+          data-api-key="vyapaar_live_YOUR_API_KEY_HERE"
+          strategy="lazyOnload"
+        />
+      </body>
+    </html>
+  );
+}
+```
+
+#### 2. React.js (Vite / CRA):
+In `index.html` (public root) right before `</body>` or dynamically in `App.jsx`:
+```jsx
+import { useEffect } from 'react';
+
+function App() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://bot.vyapaaros.in/static/widget.js';
+    script.setAttribute('data-api-key', 'vyapaar_live_YOUR_API_KEY_HERE');
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Optional cleanup
+      const el = document.getElementById('vyapaaros-chat-widget-root');
+      if (el) el.remove();
+    };
+  }, []);
+
+  return <div>{/* Your App */}</div>;
+}
+```
+
+---
+
+### 🛍️ Method C: Shopify Stores
+
+1. Go to **Shopify Admin** ➔ **Online Store** ➔ **Themes**.
+2. Click **`...` (Actions)** next to your active theme ➔ **Edit Code**.
+3. In the left sidebar, open **`layout/theme.liquid`**.
+4. Scroll down to the bottom and paste right above `</body>`:
+```liquid
+<!-- VyapaarOS AI Sales Chatbot -->
+<script 
+  src="https://bot.vyapaaros.in/static/widget.js" 
+  data-api-key="vyapaar_live_YOUR_API_KEY_HERE" 
+  defer>
+</script>
+```
+5. Click **Save**.
+
+---
+
+### 📝 Method D: WordPress & WooCommerce
+
+#### Option 1: Via Plugin (No Code Required)
+1. In WP Admin, install plugin: **"WPCode"** (or *Insert Headers and Footers*).
+2. Go to **Code Snippets** ➔ **Header & Footer** ➔ **Footer** section.
+3. Paste the script tag and click **Save Changes**.
+
+#### Option 2: Via Theme `functions.php`
+```php
+function add_vyapaaros_chatbot() {
+    ?>
+    <script 
+      src="https://bot.vyapaaros.in/static/widget.js" 
+      data-api-key="vyapaar_live_YOUR_API_KEY_HERE" 
+      defer>
+    </script>
+    <?php
+}
+add_action('wp_footer', 'add_vyapaaros_chatbot');
+```
+
+---
+
+### 🏷️ Method E: Google Tag Manager (GTM — Zero Codebase Touch)
+
+1. Open your **Google Tag Manager** container.
+2. Go to **Tags** ➔ **New** ➔ **Tag Configuration** ➔ Choose **Custom HTML**.
+3. Paste the `<script>` tag.
+4. Set **Triggering** to: **Initialization - All Pages** (or *All Pages*).
+5. Name it `VyapaarOS Chat Widget` ➔ Click **Save** ➔ **Submit & Publish**.
+
+---
+
+### 🎨 Layout Adjustment (When Existing Floating WhatsApp Button Exists)
+
+The VyapaarOS Bot launcher is positioned at `bottom: 24px; right: 24px`. If the client already has a floating WhatsApp icon in the same corner, adjust the WhatsApp icon's CSS slightly upwards so both buttons look clean:
+
+```css
+/* Shift the existing WhatsApp button slightly above the bot */
+.existing-floating-whatsapp-btn {
+    position: fixed !important;
+    bottom: 96px !important;  /* Elevated above bot launcher */
+    right: 24px !important;
+    z-index: 9999 !important;
+}
+```
+
+---
+
+### 🔒 Security & Domain Whitelisting
+
+To prevent third-party websites from stealing or reusing a client's API Key:
+1. Open **Django Superadmin** (`https://bot.vyapaaros.in/admin/`) ➔ **Client API Keys**.
+2. Set **Allowed Domains** to the client's actual domains:
+   ```text
+   example.com, www.example.com, *.example.com, localhost
+   ```
+3. Any unauthorized website trying to load the key will be blocked with `403 Unauthorized Origin`.
+
+---
+
+### ⚡ Direct REST API Integration (Headless / Mobile Apps)
+
+If you are building a custom UI or Mobile App (Flutter / React Native), you can directly interact with the backend chat endpoint:
+
+#### Endpoint:
+`POST https://bot.vyapaaros.in/api/v1/widget/chat/`
+
+#### Headers:
+```http
+Content-Type: application/json
+X-Api-Key: vyapaar_live_YOUR_API_KEY_HERE
+```
+
+#### Request Body:
+```json
+{
+  "api_key": "vyapaar_live_YOUR_API_KEY_HERE",
+  "session_id": "unique_visitor_uuid_123",
+  "message": "What is the price of your business portfolio website?",
+  "history": [
+    {"role": "user", "content": "Hi"},
+    {"role": "assistant", "content": "Hello! How can I help you today?"}
+  ]
+}
+```
+
+#### Response:
+```json
+{
+  "success": true,
+  "reply": "The Business Portfolio Website starts at ₹4,999 with Free Hosting & SSL.",
+  "images": [
+    "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=600&q=80"
+  ],
+  "client_name": "VyapaarOS HQ",
+  "bot_name": "VyapaarOS Executive",
+  "brand_color": "#F2541B",
+  "whatsapp_url": "https://wa.me/919955804730?text=Hi%20VyapaarOS%20HQ..."
+}
+```
 
 ---
 
