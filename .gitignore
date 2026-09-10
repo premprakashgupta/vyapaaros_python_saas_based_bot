@@ -28,12 +28,8 @@ chroma_db_store/
 staticfiles/
 media/
 
-# Sample Data & Scratch Documents
-sample_docs/
+# Scratch Documents
 docs/
-*.csv
-*.xlsx
-*.pdf
 
 # IDE & Editor Files
 .vscode/

@@ -1,0 +1,122 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$PUGstSXikSTqOSZchobXsO$qrQjokjbqq6dFqS++OJcT8ACfpmSvHQ4vE1l4brhPdA=",
+    "last_login": "2026-09-09T15:26:05.397Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@vyapaaros.in",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-09T08:54:06.313Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$l6eDl79OfP0yrun0j3f75O$ab7zgFZdxrpOEusy/92njePg5j9mqeNBYgYkPmGCIQg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "luxestore",
+    "first_name": "",
+    "last_name": "",
+    "email": "contact@luxeinteriors.demo",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-09T09:26:09.031Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$x2l6PDWADVs5xnNBfnvhr9$9/aer0zbZUS+d4C5fAo0LGkRs0VIqDOA0WOgId/z7C4=",
+    "last_login": "2026-09-09T15:18:29.913Z",
+    "is_superuser": false,
+    "username": "digitalpoint",
+    "first_name": "",
+    "last_name": "",
+    "email": "contact@digitalpointcafe.in",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-09T10:00:14.479Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$C5JUHoCYG5WE5p9qKe2i24$Ne1lLIKmTgmmlDflMc4kFz+631IQrESVpOu+Wlx/hL4=",
+    "last_login": "2026-09-09T14:59:01.903Z",
+    "is_superuser": false,
+    "username": "vastracollection",
+    "first_name": "",
+    "last_name": "",
+    "email": "sales@vastrafashion.in",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-09T10:32:30.180Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2w31gw7cmw1qeaecswhwiaia08h3gpvs",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP9lz4YUFgrbo3e_gfBYpGpoUtqT8d9Nkx70OjOZN_iwb9XvnVc_Z5hAw-WXxZCe3A6RH6HdF5GWtq1zFEciTtvFbcn8up7t36CGXmECg9pQydKilawTOkpUVEZiK7UymCUpa7RzocQ4OKfNGDAOOJJiVhTh8wW5KzbR:1x4JlN:9BfqCPCrgaFq7hWni3JAnvyZEDNnsF92jJVken-fQ0k",
+    "expire_date": "2026-09-23T14:59:01.911Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "91ke3y10wd0puk2tri0v404mkzyut3li",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYrihNCEsTtvQLbjFNoKJAJT1b9XSAztene6Nwy0b-OwV12HKUMHCJdfxiRPnQ-RHzTfFyPLvK0TmyMxp62mX7K-bmf7NxipjtBBILRNEGuLRyeJs29cKC0z-SCti1Z84xFVE9uWCFNRipI1BceE1wifL9PwN-E:1x4Jzz:d6w_MwfddGB1f5K-dTBDpDEgm3l8CMO5P7B635LIlo4",
+    "expire_date": "2026-09-23T15:14:07.227Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "m4k5ax8mkfvaddmkd1ej7u001wrevgii",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP-yZ0PYgtD26L1vILtlkaqBpLQn499Nkx70OjOZNwTatxz2JmtYIoyAcPllTPNTyiHig8q9qrmWbV1YHYk6bVNTjfK6ne3fIFPLMIJw7_XQ2eTslcRFj5bQDJ3VAyMyo8GkDWpNziQnJN5GY4V7jUjCM3y-xU03eg:1x4KBZ:3cjLvq7EiZ7s18pswydGaGbuhW59it8RaOu7O3KLDaM",
+    "expire_date": "2026-09-23T15:26:05.409Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xzw2qwji3fkzw3wifg17h31vxbo24yqr",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYrihNCEsTtvQLbjFNoKJAJT1b9XSAztene6Nwy0b-OwV12HKUMHCJdfxiRPnQ-RHzTfFyPLvK0TmyMxp62mX7K-bmf7NxipjtBBILRNEGuLRyeJs29cKC0z-SCti1Z84xFVE9uWCFNRipI1BceE1wifL9PwN-E:1x4K24:LWdwvsY0xMFuwL1Kf9ef9uCdf_R97cQ2hnGcCAqte7I",
+    "expire_date": "2026-09-23T15:16:16.867Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zccvh9lm12kqxbzd6u90g6jpkwxxaq1z",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP9lz4YUFgrbo3e_gfBYpGpoUtqT8d9Nkx70OjOZN_iwb9XvnVc_Z5hAw-WXxZCe3A6RH6HdF5GWtq1zFEciTtvFbcn8up7t36CGXmECg9pQydKilawTOkpUVEZiK7UymCUpa7RzocQ4OKfNGDAOOJJiVhTh8wW5KzbR:1x4JcZ:S65uyuFwBiYFRUkZStuyUqsM5WPkinZAVb8uqFSrwCk",
+    "expire_date": "2026-09-23T14:49:55.432Z"
+  }
+},
+{
+  "model": "agent_engine.businessclient",
+  "pk": "4c2740d9-f63a-43de-9459-b9dfc1dac99a",
+  "fields": {
+    "user": [
+      "vastracollection"
+    ],
+    "name": "Vastra Heritage & Modern Couture",
+    "website_url": "https://vastrafashion.in",
+    "owner_whatsapp": "919899887766",
+    "brand_color": "#db2777",
+    "bot_name": "Meera - Fashion Stylist",
+    "welcome_message": 

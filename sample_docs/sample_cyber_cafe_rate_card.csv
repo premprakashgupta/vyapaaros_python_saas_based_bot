@@ -1,0 +1,14 @@
+service_name,category,charges_inr,required_documents,processing_time
+Railway RRB NTPC / Group D Form Apply,Govt Job Form,100 + Exam Fee,"10th Marksheet, Aadhaar Card, Photo, Signature",Instant (Slip on WhatsApp within 10 mins)
+SSC CGL / CHSL Online Application,Govt Job Form,80 + Exam Fee,"Graduation/12th Certificate, Aadhaar, Photo",Instant (Within 10 mins)
+State Police / SI Constable Bharti,Govt Job Form,70 + Exam Fee,"12th Marksheet, Domicile/Caste Certificate, Aadhaar",Instant (Within 10 mins)
+Fresh Passport Online Apply + Slot Booking,Passport Service,300 (Service Charge),"Aadhaar Card, PAN Card, 10th Pass Certificate",Slot Booked within 24 Hours
+Tatkaal Passport Urgent Application,Passport Service,500 (Urgent Slot),"Aadhaar Card, PAN Card, Annexure-F, ID Proof",Same Day Slot Booking
+New PAN Card Apply (e-PAN + Physical),CSC Citizen Service,150 (Doorstep Delivery),Aadhaar Card (Linked with Mobile) & 2 Photos,7-10 Days (Physical Card by Post)
+Aadhaar Mobile Link & Biometric Appointment,CSC Citizen Service,50,Aadhaar Card copy,Instant Appointment Slip
+Ayushman Bharat Golden Card Apply,CSC Citizen Service,60,Ration Card / PM Letter / Aadhaar,Instant Printout
+Black & White Xerox / Print (Single Side),Printing & Xerox,2 per page,PDF or WhatsApp Document,Instant (1 min)
+Color Print on Glossy Paper,Printing & Xerox,10 per page,PDF or JPEG High-Res file,Instant (2 mins)
+Passport Size Photos (Sheet of 8),Photo Studio,40 per sheet,Live Photo Click in Cafe,5 Minutes
+Train Tatkal Ticket Booking (Sleeper),Railway Ticket,100 per ticket,"Passenger Names, Age, Train No, Date of Journey",At 10:00 AM (Tatkal Opening)
+Train Tatkal Ticket Booking (3AC / 2AC),Railway Ticket,150 per ticket,"Passenger Names, Age, Train No, Date of Journey",At 10:00 AM (Tatkal Opening)
