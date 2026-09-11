@@ -491,23 +491,32 @@
       transform: translateY(0);
     }
 
-    /* Typing Indicator */
+    /* Enhanced Progressive Typing Indicator */
     .typing-indicator {
       display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 9px 13px;
+      gap: 8px;
+      padding: 8px 14px;
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 18px;
       width: fit-content;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      max-width: 90%;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
       border: 1px solid #e2e8f0;
+      animation: fadeInTyping 0.25s ease-out;
+    }
+
+    .typing-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
     .typing-dot {
       width: 6px;
       height: 6px;
-      background: #94a3b8;
+      background: var(--brand-color, #0d9488);
       border-radius: 50%;
       animation: pulse 1.4s infinite ease-in-out;
     }
@@ -515,9 +524,32 @@
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
+    .typing-text {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .typing-text.fade-change {
+      opacity: 0;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeInTyping {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes pulse {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1); opacity: 1; }
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.35; }
+      40% { transform: scale(1.1); opacity: 1; }
     }
 
     /* WhatsApp-Style Product Media Collage */
@@ -1057,24 +1089,79 @@
     messagesBody.scrollTop = messagesBody.scrollHeight;
   }
 
-  // Typing Indicator
+  // Dynamic Progressive Typing Indicator
   let typingElem = null;
+  let typingInterval = null;
+
+  const TYPING_PHRASES = [
+    // Stage 1 (0s): Immediate acknowledgment
+    [
+      "🤔 Soch raha hoon...",
+      "🔍 Catalog check kar raha hoon...",
+      "✨ Information dhoondh raha hoon...",
+      "🤖 Details dekh raha hoon..."
+    ],
+    // Stage 2 (1.5s): Humble waiting
+    [
+      "✨ Bas thoda sa intezar kijiye...",
+      "⚡ Best options nikaal raha hoon...",
+      "⏳ Ek second, check kar raha hoon...",
+      "🎯 Aapke liye best rate nikaal raha hoon..."
+    ],
+    // Stage 3 (3.2s+): Reassuring finish
+    [
+      "🙌 Bas aa hi gaya, response ready hai...",
+      "⏳ Almost done, pricing calculate ho rahi hai...",
+      "✨ Bas kuch pal aur, ready ho raha hai..."
+    ]
+  ];
+
   function showTyping() {
     if (typingElem) return;
+
+    // Pick initial random phrase from Stage 1
+    const stage1List = TYPING_PHRASES[0];
+    const initialText = stage1List[Math.floor(Math.random() * stage1List.length)];
+
     typingElem = document.createElement('div');
     typingElem.className = 'msg-row bot';
     typingElem.innerHTML = `
       <div class="typing-indicator">
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
+        <div class="typing-dots">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+        <span class="typing-text">${initialText}</span>
       </div>
     `;
     messagesBody.appendChild(typingElem);
     messagesBody.scrollTop = messagesBody.scrollHeight;
+
+    const textSpan = typingElem.querySelector('.typing-text');
+    let step = 0;
+
+    // Transition smoothly through Stage 2 and Stage 3
+    typingInterval = setInterval(() => {
+      step++;
+      const phraseGroup = TYPING_PHRASES[Math.min(step, TYPING_PHRASES.length - 1)];
+      const nextPhrase = phraseGroup[Math.floor(Math.random() * phraseGroup.length)];
+
+      if (textSpan) {
+        textSpan.classList.add('fade-change');
+        setTimeout(() => {
+          textSpan.textContent = nextPhrase;
+          textSpan.classList.remove('fade-change');
+        }, 200);
+      }
+    }, 1700);
   }
 
   function hideTyping() {
+    if (typingInterval) {
+      clearInterval(typingInterval);
+      typingInterval = null;
+    }
     if (typingElem && typingElem.parentNode) {
       typingElem.parentNode.removeChild(typingElem);
       typingElem = null;
