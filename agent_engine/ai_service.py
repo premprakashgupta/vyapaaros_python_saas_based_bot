@@ -38,79 +38,52 @@ def extract_lead_info(message: str) -> Dict[str, Optional[str]]:
                 
     return extracted
 
-def retrieve_relevant_knowledge(client: BusinessClient, query: str, history: List[Dict[str, str]] = None, top_k: int = 6) -> List[KnowledgeDocument]:
+def retrieve_relevant_knowledge(client: BusinessClient, query: str, history: List[Dict[str, str]] = None, top_k: int = 3) -> List[KnowledgeDocument]:
     """
-    Hybrid Multi-Entity Vector RAG:
-    Detects composite/multi-product queries (e.g. 'Banarasi Saree aur Kurti')
-    and retrieves top vector matches for each sub-topic + combined query.
+    Sub-Second Hybrid Retrieval:
+    1. Instant Fast-Path for greetings & short inquiries (<1ms)
+    2. Fast Title / Keyword Token Matching (~10ms)
+    3. ChromaDB Vector Semantic Search fallback (~400ms)
     """
-    from .vector_service import VectorRAGEngine
+    query_clean = query.strip()
+    query_lower = query_clean.lower()
     
-    combined_query = query.strip()
+    # 1. Fast-Path: Skip retrieval for simple greetings & acknowledgments
+    greetings = {"hi", "hello", "hey", "namaste", "good morning", "good evening", "good afternoon", "thanks", "thank you", "ok", "okay", "haan", "yes", "no"}
+    if query_lower in greetings or len(query_clean) <= 2:
+        return []
+
+    combined_query = query_clean
     if history:
-        recent_user_msgs = [m.get("content", "") for m in history if m.get("role") == "user"][-2:]
-        combined_query = " ".join(recent_user_msgs + [query])
+        recent_user_msgs = [m.get("content", "") for m in history if m.get("role") == "user"][-1:]
+        if recent_user_msgs:
+            combined_query = f"{recent_user_msgs[0]} {query_clean}"
 
-    # Detect sub-queries for multi-product queries
-    # e.g., 'Banarasi Silk Saree aur Kurti ke designs dikhao' -> ['Banarasi Silk Saree', 'Kurti ke designs dikhao']
-    split_parts = [p.strip() for p in re.split(r'\b(?:aur|and|ya|or|dono|both|vs|,)\b', query, flags=re.IGNORECASE) if len(p.strip()) > 2]
-    search_queries = [combined_query]
-    for part in split_parts:
-        if part.lower() not in [q.lower() for q in search_queries]:
-            search_queries.append(part)
+    # 2. Fast Title & Keyword Matching (10ms)
+    tokens = [t.strip().lower() for t in re.findall(r'\w+', combined_query) if len(t.strip()) > 2]
+    stopwords = {"hai", "kya", "aap", "aur", "the", "for", "with", "show", "tell", "price", "batao", "kaunsa", "kaunsi", "kitna", "rate", "cost"}
+    meaningful_tokens = [t for t in tokens if t not in stopwords]
+    
+    if meaningful_tokens:
+        doc_qs = list(KnowledgeDocument.objects.filter(client=client, is_active=True))
+        title_matches = [d for d in doc_qs if any(t in d.page_title.lower() for t in meaningful_tokens)]
+        if len(title_matches) >= 1:
+            return title_matches[:top_k]
 
-    # 1. Primary: Semantic Vector Similarity Search via ChromaDB
+    # 3. Semantic Vector Search via ChromaDB (Fallback if no keyword match)
     try:
-        seen_ids = set()
-        matched_ids = []
-        for q in search_queries:
-            sub_matches = VectorRAGEngine.similarity_search(client, q, top_k=3)
-            for m in sub_matches:
-                if m["id"] not in seen_ids:
-                    seen_ids.add(m["id"])
-                    matched_ids.append(m["id"])
-
-        if matched_ids:
+        from .vector_service import VectorRAGEngine
+        matches = VectorRAGEngine.similarity_search(client, combined_query, top_k=top_k)
+        if matches:
+            matched_ids = [m["id"] for m in matches]
             docs_dict = {str(d.id): d for d in KnowledgeDocument.objects.filter(id__in=matched_ids, client=client, is_active=True)}
             ordered_docs = [docs_dict[doc_id] for doc_id in matched_ids if doc_id in docs_dict]
-
-            # Title-boost reranking: if query tokens appear in doc title, promote it
-            # Fixes cases where semantically similar docs outrank the exact service doc
-            query_tokens = [t.lower() for t in re.findall(r'\w+', query) if len(t) > 2]
-            def title_score(doc):
-                title_lower = doc.page_title.lower()
-                return sum(1 for t in query_tokens if t in title_lower)
-
-            ordered_docs.sort(key=title_score, reverse=True)
-
             if ordered_docs:
                 return ordered_docs[:top_k]
     except Exception as e:
         logger.warning(f"Vector search exception: {e}")
 
-    # 2. Fallback: Keyword Frequency Search
-    tokens = [t.strip().lower() for t in re.findall(r'\w+', combined_query) if len(t.strip()) > 2]
-    docs = list(KnowledgeDocument.objects.filter(client=client, is_active=True))
-    if not docs:
-        return []
-    if not tokens:
-        return docs[:top_k]
-        
-    scored_docs = []
-    for doc in docs:
-        score = 0
-        title_lower = doc.page_title.lower()
-        content_lower = doc.content_text.lower()
-        for token in tokens:
-            if token in title_lower:
-                score += 30   # Strong boost: title match beats content match
-            if token in content_lower:
-                score += content_lower.count(token) * 2
-        scored_docs.append((score, doc))
-        
-    scored_docs.sort(key=lambda x: x[0], reverse=True)
-    results = [doc for score, doc in scored_docs if score > 0][:top_k]
-    return results or docs[:top_k]
+    return list(KnowledgeDocument.objects.filter(client=client, is_active=True)[:top_k])
 
 # ==============================================================================
 # ⚡ Tool Calling / Function Calling Schema for Catalog & Price Sorting
