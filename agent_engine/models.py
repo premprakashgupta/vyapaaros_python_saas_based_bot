@@ -76,3 +76,25 @@ class ChatLead(models.Model):
 
     def __str__(self):
         return f"Lead: {self.visitor_name or 'Anonymous'} - {self.client.name}"
+
+
+class Product(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, related_name="products")
+    name = models.CharField(max_length=255, help_text="Product or Service Name")
+    category = models.CharField(max_length=150, default="General", help_text="Category name e.g. Web Development, Sarees")
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00, help_text="Price in INR")
+    pricing_type = models.CharField(max_length=50, default="one-time", help_text="e.g. one-time, monthly, hourly")
+    description = models.TextField(blank=True, null=True)
+    features = models.TextField(blank=True, null=True, help_text="Key features or deliverables")
+    image_url = models.URLField(max_length=500, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['price']
+
+    def __str__(self):
+        return f"[{self.client.name}] {self.name} - ₹{self.price:,.0f}"
+
